@@ -1,0 +1,37 @@
+== README
+
+= Steps that are necessary to get the application up and running:
+
+==== Ruby version: <tt>ruby 2.1.5p273 </tt>
+
+==== Rails version: <tt>Rails 4.2.1 </tt>
+
+==== Database creation and initialization: <tt>rake db:migrate && rake db:seed </tt>
+
+= Deployment instructions:
+
+==== Please make sure that the Devise gem is installed and the following commands are executed: 
+
+===== <tt> > rails g devise:install </tt>
+===== <tt> > rails g devise user </tt>
+
+==== Run the bundle, migrations and load the seed file:
+
+===== <tt> > bundle install </tt>
+===== <tt> > rake db:migrate </tt>
+===== <tt> > rake db:seed </tt>
+
+==== Start the Webrick server:
+
+===== <tt> > rails s </tt>
+
+==== Test the api by visiting a few endpoints:
+
+====== http://localhost:3000/api/v1/users/1/lists
+====== http://localhost:3000/api/v1/users/2/lists
+====== http://localhost:3000/api/v1/users/1/lists/2/items/2
+====== http://localhost:3000/api/v1/users/3/lists/9/items/9
+
+
+
+

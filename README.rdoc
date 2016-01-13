@@ -10,14 +10,8 @@
 
 = Deployment instructions:
 
-==== Please make sure that the Devise gem is installed and the following commands are executed: 
-
-===== <tt> > rails g devise:install </tt>
-===== <tt> > rails g devise user </tt>
-
 ==== Run the bundle, migrations and load the seed file:
 
-===== <tt> > bundle install </tt>
 ===== <tt> > rake db:migrate </tt>
 ===== <tt> > rake db:seed </tt>
 

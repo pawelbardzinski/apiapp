@@ -7805,3 +7805,67 @@ Processing by Api::V1::Users::Lists::ItemsController#show as JSON
   [1m[36mList Load (0.1ms)[0m  [1mSELECT  "lists".* FROM "lists" WHERE "lists"."user_id" = ? AND "lists"."id" = ? LIMIT 1[0m  [["user_id", 3], ["id", 9]]
   [1m[35mItem Load (0.1ms)[0m  SELECT  "items".* FROM "items" WHERE "items"."list_id" = ? AND "items"."id" = ? LIMIT 1  [["list_id", 9], ["id", 9]]
 Completed 200 OK in 18ms (Views: 0.4ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/api/v1/users/1/lists" for ::1 at 2016-01-13 19:05:34 -0500
+  [1m[36mActiveRecord::SchemaMigration Load (0.7ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by Api::V1::Users::ListsController#index as JSON
+  Parameters: {"user_id"=>"1"}
+  [1m[35mList Load (1.5ms)[0m  SELECT "lists".* FROM "lists" WHERE "lists"."user_id" = ?  [["user_id", 1]]
+Completed 200 OK in 43ms (Views: 12.5ms | ActiveRecord: 1.9ms)
+
+
+Started POST "/api/v1/sessions" for ::1 at 2016-01-13 19:05:37 -0500
+Processing by Api::V1::SessionsController#create as JSON
+  Parameters: {"session"=>{}}
+Can't verify CSRF token authenticity
+Completed 401 Unauthorized in 4ms (Views: 0.3ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/api/v1/users/1/lists" for ::1 at 2016-01-13 19:05:43 -0500
+Processing by Api::V1::Users::ListsController#index as JSON
+  Parameters: {"user_id"=>"1"}
+  [1m[36mList Load (0.2ms)[0m  [1mSELECT "lists".* FROM "lists" WHERE "lists"."user_id" = ?[0m  [["user_id", 1]]
+Completed 200 OK in 7ms (Views: 3.3ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/api/v1/users/1/lists/10/items" for ::1 at 2016-01-13 19:05:43 -0500
+Processing by Api::V1::Users::Lists::ItemsController#index as JSON
+  Parameters: {"user_id"=>"1", "list_id"=>"10"}
+  [1m[35mList Load (0.3ms)[0m  SELECT  "lists".* FROM "lists" WHERE "lists"."user_id" = ? AND "lists"."id" = ? LIMIT 1  [["user_id", 1], ["id", 10]]
+Completed 404 Not Found in 4ms (ActiveRecord: 0.3ms)
+
+
+Started GET "/api/v1/users/1/lists" for ::1 at 2016-01-13 19:05:49 -0500
+Processing by Api::V1::Users::ListsController#index as JSON
+  Parameters: {"user_id"=>"1"}
+  [1m[36mList Load (0.1ms)[0m  [1mSELECT "lists".* FROM "lists" WHERE "lists"."user_id" = ?[0m  [["user_id", 1]]
+Completed 200 OK in 7ms (Views: 3.5ms | ActiveRecord: 0.1ms)
+
+
+Started DELETE "/api/v1/sessions" for ::1 at 2016-01-13 19:05:52 -0500
+Processing by Api::V1::SessionsController#destroy as JSON
+Can't verify CSRF token authenticity
+  [1m[35mUser Load (1.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."auth_token" = ? LIMIT 1  [["auth_token", "qkYy2SzARFJ_zNvcU7m2"]]
+Filter chain halted as :authenticate_and_authorize! rendered or redirected
+Completed 401 Unauthorized in 9ms (Views: 0.4ms | ActiveRecord: 1.3ms)
+
+
+Started POST "/api/v1/sessions" for ::1 at 2016-01-13 19:06:02 -0500
+Processing by Api::V1::SessionsController#create as JSON
+  Parameters: {"email"=>"myemail2@test.com", "password"=>"[FILTERED]", "session"=>{"email"=>"myemail2@test.com", "password"=>"[FILTERED]"}}
+Can't verify CSRF token authenticity
+  [1m[36mUser Load (0.8ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."email" = ? LIMIT 1[0m  [["email", "myemail2@test.com"]]
+  [1m[35mUser Exists (0.2ms)[0m  SELECT  1 AS one FROM "users" WHERE "users"."auth_token" = ? LIMIT 1  [["auth_token", "z-VtHnmYj3D9-PwE-b5g"]]
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mUser Exists (0.2ms)[0m  SELECT  1 AS one FROM "users" WHERE ("users"."auth_token" = 'z-VtHnmYj3D9-PwE-b5g' AND "users"."id" != 2) LIMIT 1
+  [1m[36mSQL (0.4ms)[0m  [1mUPDATE "users" SET "auth_token" = ?, "updated_at" = ? WHERE "users"."id" = ?[0m  [["auth_token", "z-VtHnmYj3D9-PwE-b5g"], ["updated_at", "2016-01-14 00:06:02.532533"], ["id", 2]]
+  [1m[35m (2.7ms)[0m  commit transaction
+Completed 200 OK in 118ms (Views: 0.6ms | ActiveRecord: 4.5ms)
+
+
+Started GET "/api/v1/users/2/lists" for ::1 at 2016-01-13 19:06:02 -0500
+Processing by Api::V1::Users::ListsController#index as JSON
+  Parameters: {"user_id"=>"2"}
+  [1m[36mList Load (0.2ms)[0m  [1mSELECT "lists".* FROM "lists" WHERE "lists"."user_id" = ?[0m  [["user_id", 2]]
+Completed 200 OK in 6ms (Views: 2.2ms | ActiveRecord: 0.1ms)
